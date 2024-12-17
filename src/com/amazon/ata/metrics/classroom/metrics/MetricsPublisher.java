@@ -63,10 +63,8 @@ public class MetricsPublisher {
             .withValue(value)
             .withDimensions(service, marketplace);
 
-        final PutMetricDataRequest request = new PutMetricDataRequest()
+        return new PutMetricDataRequest()
             .withNamespace(MetricsConstants.NAMESPACE)
             .withMetricData(datum);
-
-        return request;
     }
 }

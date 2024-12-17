@@ -3,6 +3,7 @@ package com.amazon.ata.metrics.classroom.activity;
 import com.amazon.ata.metrics.classroom.dao.ReservationDao;
 import com.amazon.ata.metrics.classroom.dao.models.UpdatedReservation;
 import com.amazon.ata.metrics.classroom.metrics.MetricsPublisher;
+import com.amazonaws.services.cloudwatch.model.StandardUnit;
 
 import java.time.ZonedDateTime;
 import javax.inject.Inject;
@@ -36,7 +37,11 @@ public class ModifyReservationActivity {
                                             final Integer numberOfNights) {
 
         UpdatedReservation updatedReservation = reservationDao.modifyReservation(reservationId, checkInDate,
-            numberOfNights);
+                numberOfNights);
+
+        // Log the ModifiedReservationCount metric
+        metricsPublisher.addMetric("ModifiedReservationCount", 1, StandardUnit.Count);
+
         return updatedReservation;
     }
 }

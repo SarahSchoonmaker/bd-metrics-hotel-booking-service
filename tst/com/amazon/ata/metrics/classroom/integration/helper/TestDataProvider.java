@@ -15,7 +15,7 @@ public class TestDataProvider {
 
         Reservation result = new Reservation();
         BigDecimal costPerNight = new BigDecimal(random.ints(1, 30, 500).findFirst().getAsInt());
-        Integer numberOfNights = random.ints(1, 1, 15).findFirst().getAsInt();
+        int numberOfNights = random.ints(1, 1, 15).findFirst().getAsInt();
         result.setCostPerNight(costPerNight);
         result.setTotalCost(costPerNight.multiply(new BigDecimal(numberOfNights)));
         result.setCheckInDate(ZonedDateTime.now());
